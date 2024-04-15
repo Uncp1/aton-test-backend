@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 @Schema()
 export class Client {
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, unique: true, required: true })
   id: string;
 
   @Prop({ type: String, required: true })
