@@ -15,16 +15,17 @@ export class Client {
   firstName: string;
 
   @Prop({ type: String, required: true })
-  middleName: string;
+  surname: string;
 
   @Prop({ type: Date, required: true })
-  birthDate: Date;
+  // birthDate: Date;
+  birthDate: string;
 
   @Prop({ type: String, required: true })
-  INN: string;
+  inn: string;
 
   @Prop({ type: String, required: true })
-  responsiblePerson: string;
+  responsibleUser: string;
 
   @Prop({ type: String, default: 'Не в работе' })
   status: string;
