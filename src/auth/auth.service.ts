@@ -26,14 +26,14 @@ export class AuthService {
 
   async validatePassword(login: string, receivedPassword: string) {
     const user = await this.usersService.findUser(login);
-
     if (!user) {
       return null;
     }
 
+    const hashedPassword = await this.hashService.hash(receivedPassword);
     const isMatch = await this.hashService.verify(
       receivedPassword,
-      user.password,
+      hashedPassword,
     );
     const { password, ...result } = user;
 

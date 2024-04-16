@@ -13,14 +13,14 @@ export class UsersService {
   }
 
   async findAll(): Promise<User[]> {
-    return await this.userModel.find();
+    return await this.userModel.find().exec();
   }
 
   async findUserByID(id: number): Promise<User> {
-    return this.userModel.findById(id);
+    return this.userModel.findById(id).exec();
   }
 
   async findUser(login: string): Promise<User> {
-    return this.userModel.findOne({ login });
+    return this.userModel.findOne({ login }).exec();
   }
 }

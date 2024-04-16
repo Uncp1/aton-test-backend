@@ -12,6 +12,7 @@ import config from './config';
     ConfigModule.forRoot({
       isGlobal: true,
       load: [config],
+      envFilePath: './.env',
     }),
     MongooseModule.forRoot('mongodb://localhost:27017/atondb'),
     UsersModule,
