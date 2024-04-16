@@ -2,9 +2,6 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 @Schema()
 export class Client {
-  @Prop({ type: String, unique: true, required: true })
-  id: string;
-
   @Prop({ type: String, required: true })
   accountNumber: string;
 
@@ -28,7 +25,7 @@ export class Client {
   responsibleUser: string;
 
   @Prop({ type: String, default: 'Не в работе' })
-  status: string;
+  status: 'Не в работе' | 'В работе' | 'Завершен';
 }
 
 export const ClientSchema = SchemaFactory.createForClass(Client);
