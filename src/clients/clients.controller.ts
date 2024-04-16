@@ -15,7 +15,7 @@ import { JwtGuard } from 'src/guards/jwt.guard';
 import { UserRequest } from 'src/utils/types';
 import { UpdateClientDto } from './update-client.dto';
 
-@UseGuards(JwtGuard)
+//@UseGuards(JwtGuard)
 @Controller('clients')
 export class ClientsController {
   constructor(private readonly clientsService: ClientsService) {}
@@ -44,7 +44,7 @@ export class ClientsController {
     @Body() updateClientDto: UpdateClientDto,
   ) {
     return this.clientsService.updateStatus(
-      req.user.id,
+      req.user._id,
       status,
       updateClientDto,
     );

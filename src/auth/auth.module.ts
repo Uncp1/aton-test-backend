@@ -14,7 +14,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 @Module({
   imports: [
     HashModule,
-
     PassportModule.register({ defaultStrategy: 'jwt' }),
     UsersModule,
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),

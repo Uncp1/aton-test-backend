@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-
+import { Document } from 'mongoose';
 @Schema()
-export class Client {
+export class Client extends Document {
   @Prop({ type: String, required: true })
   accountNumber: string;
 
