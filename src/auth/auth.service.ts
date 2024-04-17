@@ -13,6 +13,7 @@ export class AuthService {
   ) {}
 
   auth(user: User) {
+    const { password, ...userWithoutPassword } = user;
     return {
       access_token: this.jwtService.sign(
         { sub: user._id },
@@ -21,6 +22,7 @@ export class AuthService {
           expiresIn: '1d',
         },
       ),
+      user: userWithoutPassword,
     };
   }
 
