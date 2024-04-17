@@ -17,6 +17,7 @@ export class UsersService {
   }
 
   async findUserByID(id: number): Promise<User> {
+    console.log('findUserByID called with id:', id);
     return this.userModel.findById(id).exec();
   }
 

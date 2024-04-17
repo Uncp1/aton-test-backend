@@ -44,7 +44,7 @@ export class ClientsController {
     @Body() updateClientDto: UpdateClientDto,
   ) {
     return this.clientsService.updateStatus(
-      req.user._id,
+      +req.user._doc._id,
       status,
       updateClientDto,
     );
