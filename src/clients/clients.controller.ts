@@ -30,7 +30,7 @@ export class ClientsController {
     return this.clientsService.findAll();
   }
 
-  @Get(':id')
+  @Get(':responsibleUser')
   findByUser(
     @Param('responsibleUser') responsibleUser: string,
   ): Promise<Client[]> {
@@ -40,13 +40,10 @@ export class ClientsController {
   @Patch(':id')
   updateStatus(
     @Req() req: UserRequest,
-    @Param('status') status: 'Не в работе' | 'В работе' | 'Завершен',
+    @Param('id') id: string,
+    @Body('status') status: 'Не в работе' | 'В работе' | 'Завершен',
     @Body() updateClientDto: UpdateClientDto,
   ) {
-    return this.clientsService.updateStatus(
-      +req.user._doc._id,
-      status,
-      updateClientDto,
-    );
+    return this.clientsService.updateStatus(id, status, updateClientDto);
   }
 }

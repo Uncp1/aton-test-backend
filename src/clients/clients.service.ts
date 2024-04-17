@@ -15,32 +15,30 @@ export class ClientsService {
   }
 
   async findAll(): Promise<Client[]> {
-    return await this.clientModel.find();
+    return await this.clientModel.find().exec();
   }
 
-  async findById(id: number): Promise<Client> {
-    return this.clientModel.findById(id);
+  async findById(id: string): Promise<Client> {
+    return this.clientModel.findById(id).exec();
   }
 
   async findByUser(responsibleUser: string): Promise<Client[]> {
-    return this.clientModel.findById(responsibleUser);
+    return this.clientModel.find({ responsibleUser: responsibleUser }).exec();
   }
 
   async updateStatus(
-    id: number,
+    _id: string,
     status: 'Не в работе' | 'В работе' | 'Завершен',
     updateClientDto: UpdateClientDto,
   ): Promise<Client> {
-    const updatedClient = await this.clientModel.findByIdAndUpdate(
-      id,
-      { $set: { status: status, ...updateClientDto } },
-      { new: true },
-    );
+    const id = _id.toString();
+    const client = await this.clientModel.findOne({ _id: id });
 
-    if (!updatedClient) {
+    if (!client) {
       throw new ClientNotFoundException();
     }
+    client.status = status;
 
-    return updatedClient;
+    return client.save();
   }
 }

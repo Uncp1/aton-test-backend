@@ -15,7 +15,6 @@ export class Client extends Document {
   surname: string;
 
   @Prop({ type: Date, required: true })
-  // birthDate: Date;
   birthDate: string;
 
   @Prop({ type: String, required: true })
